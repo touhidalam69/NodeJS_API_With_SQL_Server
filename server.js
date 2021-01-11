@@ -1,4 +1,5 @@
 var express = require('express');
+const cors = require('cors');
 var app = express();
 var port = process.env.port || 1337;
 
@@ -7,6 +8,14 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+
+var corsOptions = {
+    origin: 'http://localhost:4200',
+    optionsSuccessStatus: 200, // For legacy browser support
+    methods: "GET,POST,OPTIONS,DELETE,PUT"
+}
+
+app.use(cors(corsOptions));
 
 var productController = require('./Controller/ProductController')();
 app.use("/api/products", productController);
