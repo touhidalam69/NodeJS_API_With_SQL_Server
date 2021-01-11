@@ -6,8 +6,6 @@ var conn = require('../connection/Connect')();
 var routes = function () {
     router.route('')
         .get(function (req, res) {			
-			// res.setHeader("Access-Control-Allow-Origin", "*");
-			// res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS,DELETE,PUT");
             conn.connect().then(function () {
                 var sqlQuery = "select top 100 * from Products";
                 var req = new sql.Request(conn);
